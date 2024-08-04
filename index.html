@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/jsx">
+        const app = document.getElementById("app");
+const root = ReactDOM.createRoot(app);
+
+function Definition(props) {
+    return <>
+        <h1>{props.title}</h1>
+        <p>{props.content}</p>
+        <button onClick={props.onClick}>{props.clicks}</button>
+    </>;
+}
+
+
+function HomePage() {
+    function handleClick(){
+        setClicks(clicks+1);
+    }
+    
+    const [clicks,setClicks]=React.useState(0);
+    const l = [{ title: "SQL", content: "It stands for Structured Query Language and is used to store structured data" }, { title: "MongoDB", content: "It is a NoSQL database that is used to store a variety of unstructured data" }]
+    return <>
+        {l.map((d) => {
+            return <Definition key={d.title} title={d.title} content={d.content} clicks={clicks} onClick={handleClick}/>;
+        })}
+        <p className="pTag">"Classname"</p>
+    </>;
+}
+
+root.render(<HomePage />);
+    </script>
+</body>
+
+</html>
